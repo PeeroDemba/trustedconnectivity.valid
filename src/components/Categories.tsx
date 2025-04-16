@@ -1,3 +1,5 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
@@ -14,6 +16,54 @@ const responsive = {
 };
 
 function Categories() {
+  useGSAP(() => {
+    const tl = gsap.timeline();
+
+    tl.to(".categoriesItem", {
+      marginTop: 0,
+      scrollTrigger: {
+        trigger: ".categoriesItem",
+        start: "top bottom",
+        end: () => {
+          return `${window.innerHeight - 96} bottom`;
+        },
+        scrub: true,
+      },
+    }).to(".item", {
+      height: "55vh",
+      scrollTrigger: {
+        trigger: ".categoriesItem",
+        start: "top top",
+        end: () => {
+          return document.querySelector(".categoriesContainer")!.scrollWidth;
+        },
+        scrub: true,
+      },
+      stagger: 0.5,
+    });
+
+    gsap.to(".categoriesContainer", {
+      x: () => {
+        return (
+          window.innerWidth -
+          document.querySelector(".categoriesContainer")!.scrollWidth
+        );
+      },
+      scrollTrigger: {
+        trigger: "#categories",
+        pin: true,
+        scrub: true,
+        start: "top top",
+        end: () => {
+          return `${
+            document.querySelector(".categoriesContainer")!.scrollWidth
+          } bottom`;
+        },
+        invalidateOnRefresh: true,
+      },
+    });
+  });
+
   return (
     <>
       <Carousel

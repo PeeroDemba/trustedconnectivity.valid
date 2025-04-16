@@ -1,5 +1,8 @@
+import { AnimatePresence, motion } from "motion/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+// import { useMediaQuery } from "react-responsive";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { IoIosClose } from "react-icons/io";
 import { useState } from "react";
@@ -10,6 +13,87 @@ function Header() {
   // const xl = useMediaQuery({ query: "(min-width: 1280px)" });
   const [toggle1, setToggle1] = useState(false);
   const [toggle2, setToggle2] = useState(false);
+
+  useGSAP(() => {
+    gsap.to("#navbar", {
+      translateY: -200,
+      duration: 0.5,
+      scrollTrigger: {
+        trigger: "#navbar",
+        start: "top+=16px top",
+        toggleActions: "play none reverse",
+      },
+    });
+
+    gsap.to("#navbar", {
+      scrollTrigger: {
+        trigger: "body",
+        start: "top top",
+        end: () => {
+          return window.document.body.offsetHeight + window.innerHeight;
+        },
+        onUpdate(self) {
+          if (self.direction === -1 && self.progress !== 0) {
+            gsap.to("#navbar", {
+              translateY: 0,
+              position: "fixed",
+              top: "0",
+              zIndex: "100",
+              duration: 0.5,
+              backgroundColor: "blue",
+            });
+          } else if (self.progress === 0) {
+            gsap.to("#navbar", {
+              translateY: 0,
+              position: "fixed",
+              top: "0",
+              zIndex: "100",
+              duration: 0.5,
+              backgroundColor: "transparent",
+            });
+          } else if (self.direction === 1) {
+            gsap.to("#navbar", {
+              translateY: -200,
+              position: "fixed",
+              top: "0",
+              zIndex: "100",
+              duration: 0.5,
+              backgroundColor: "transparent",
+            });
+          }
+        },
+      },
+    });
+
+    gsap.to("#solutions", {
+      y: 0,
+      filter: "blur(0)",
+      duration: 0.4,
+      scrollTrigger: {
+        trigger: "#solutions",
+        start: "center bottom",
+      },
+    });
+
+    gsap.to(".empowering", {
+      backgroundImage: () => {
+        return `linear-gradient(to right, #f9453f ${-30}%, #fa9b26 ${
+          15 - 30
+        }%, #2ee76f ${30 - 30}%, #18e1f3 ${45 - 30}%, #3f0085 ${
+          60 - 30
+        }%, #18e1f3 ${75 - 30}%, #2ee76f ${90 - 30}%, #fa9b26 ${
+          105 - 30
+        }%, #f9453f`;
+      },
+      scrollTrigger: {
+        trigger: "#navbar",
+        start: "top top",
+        end: `+=${window.innerHeight}`,
+        scrub: true,
+        toggleActions: "play none reverse",
+      },
+    });
+  }, {});
 
   return (
     <div id="head" className="bg-[#0a0d3a] h-full relative">
@@ -110,137 +194,217 @@ function Header() {
             >
               <RxHamburgerMenu size="1rem" />
             </div>
-            {toggle1 && (
-              <div className="gap-12 px-[5vw] py-1 flex min-h-screen text-black flex-col font-semibold left-0 text-[16px] fixed top-0 w-full bg-[#f7f5ff] z-[110]">
-                <div className="flex justify-between">
-                  <div>
-                    <img
-                      src="/images/apple-touch-icon.png"
-                      alt=""
-                      width={56}
-                      height={18}
-                    />
+            <AnimatePresence>
+              {toggle1 && (
+                <motion.div
+                  key="navbar"
+                  initial={{ x: "100%" }}
+                  animate={{ x: 0 }}
+                  exit={{
+                    x: "100%",
+                    transition: { duration: 0.5, delay: 0.5 },
+                  }}
+                  transition={{ duration: 0.5 }}
+                  className="gap-12 px-[5vw] py-1 flex min-h-screen text-black flex-col font-semibold left-0 text-[16px] fixed top-0 w-full bg-[#f7f5ff] z-[110]"
+                >
+                  <div className="flex justify-between">
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.5, delay: 2 }}
+                    >
+                      <img
+                        src="/images/apple-touch-icon.png"
+                        alt=""
+                        width={56}
+                        height={18}
+                      />
+                    </motion.div>
+                    <div
+                      onClick={() => {
+                        setToggle1(false);
+                      }}
+                      className="h-[36px] w-[36px] flex justify-center items-center rounded-lg bg-white self-center"
+                    >
+                      <IoIosClose size="1.5rem" />
+                    </div>
                   </div>
-                  <div
-                    onClick={() => {
-                      setToggle1(false);
-                    }}
-                    className="h-[36px] w-[36px] flex justify-center items-center rounded-lg bg-white self-center"
-                  >
-                    <IoIosClose size="1.5rem" />
-                  </div>
-                </div>
-                <div className="pl-2 flex flex-col gap-8">
-                  <a
-                    href="#"
-                    onClick={() => {
-                      setToggle2(true);
-                    }}
-                    className="hover:!text-[#999] flex items-center gap-2 text-[36px] font-normal group-hover:text-[#111] cursor-pointer group/solutions"
-                  >
-                    <span className="leading-none">Solutions</span>
-                    <img src="/images/arrowright.svg" />
-                    {toggle2 && (
-                      <div className="fixed top-0 left-0 w-full h-full bg-black/50 z-[120] flex justify-end">
-                        <div className="bg-[#fbfafe] pt-36 pb-40 h-full transition-all duration-1000 w-[85%] z-[60] overflow-y-auto">
-                          <div
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              setToggle2(false);
+                  <div className="pl-2 flex flex-col gap-8">
+                    <a
+                      href="#"
+                      onClick={() => {
+                        setToggle2(true);
+                      }}
+                      className="hover:!text-[#999] flex items-center gap-2 text-[36px] font-normal group-hover:text-[#111] cursor-pointer group/solutions"
+                    >
+                      <motion.span
+                        initial={{ opacity: 0, x: 50, y: 20 }}
+                        animate={{ opacity: 1, x: 0, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.5 }}
+                        className="leading-none"
+                      >
+                        Solutions
+                      </motion.span>
+                      <motion.img
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ duration: 0.5, delay: 1.5 }}
+                        src="/images/arrowright.svg"
+                      />
+                      <AnimatePresence>
+                        {toggle2 && (
+                          <motion.div
+                            key="innerbar"
+                            initial={{ opacity: 0 }}
+                            animate={{
+                              opacity: 1,
+                              transition: { duration: 0.2 },
                             }}
-                            className="h-[36px] z-[130] fixed top-12 left-[calc(15%+2rem)] w-[36px] flex justify-center items-center rounded-lg bg-white/30 backdrop-blur-lg"
+                            exit={{
+                              opacity: 0,
+                              transition: { duration: 0.5, delay: 1 },
+                            }}
+                            className="fixed top-0 left-0 w-full h-full bg-black/50 z-[120] flex justify-end"
                           >
-                            <img
-                              src="/images/arrowright.svg"
-                              alt=""
-                              className="rotate-180"
-                            />
-                          </div>
-                          <p className="text-[22px] text-[#01010c] font-medium px-8 mb-16">
-                            View All
-                          </p>
-                          <div className="flex flex-col px-8 justify-between gap-4 font-medium">
-                            <div className="flex gap-8 flex-col text-black">
-                              <div className="flex flex-col gap-12">
-                                <div>
-                                  <p className="text-[28px] mb-4">SIMs</p>
-                                  <div className="text-[18px] text-[#666] flex flex-col gap-4">
-                                    <p>SIMs</p>
+                            <motion.div
+                              initial={{ x: "100%" }}
+                              animate={{
+                                x: 0,
+                                transition: { duration: 0.5 },
+                              }}
+                              exit={{
+                                x: "100%",
+                                transition: { duration: 0.3, delay: 0.3 },
+                              }}
+                              className="bg-[#fbfafe] pl-4 pt-16 pb-40 h-full transition-all duration-1000 w-[85%] z-[60] overflow-y-auto"
+                            >
+                              <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{
+                                  opacity: 1,
+                                  transition: { duration: 0.3, delay: 0.5 },
+                                }}
+                                exit={{
+                                  opacity: 0,
+                                  transition: { duration: 0.3 },
+                                }}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setToggle2(false);
+                                }}
+                                className="h-[36px] w-[36px] flex mb-16 justify-center items-center rounded-lg bg-white/30 backdrop-blur-lg"
+                              >
+                                <img
+                                  src="/images/arrowright.svg"
+                                  alt=""
+                                  className="rotate-180"
+                                />
+                              </motion.div>
+                              <p className="text-[22px] text-[#01010c] font-medium pl-8 mb-16">
+                                View All
+                              </p>
+                              <div className="flex flex-col pl-8 justify-between gap-4 font-medium">
+                                <div className="flex gap-8 flex-col text-black">
+                                  <div className="flex flex-col gap-12">
+                                    <div>
+                                      <p className="text-[28px] mb-4">SIMs</p>
+                                      <div className="text-[18px] text-[#666] flex flex-col gap-4">
+                                        <p>SIMs</p>
+                                      </div>
+                                    </div>
+                                    <div>
+                                      <p className="text-[28px] mb-4">eSIMs</p>
+                                      <div className="text-[20px] text-[#666] flex flex-col gap-4">
+                                        <p>eSIMs for IoT and Consumer</p>
+                                        <p>eSIM Interoperability</p>
+                                      </div>
+                                    </div>
+                                    <div>
+                                      <p className="text-[28px] mb-4">
+                                        eSIM Solutions
+                                      </p>
+                                      <div className="text-[20px] text-[#666] flex flex-col gap-4">
+                                        <p>Remote SIM Provisioning</p>
+                                        <p>eSIM Onboarding Journeys</p>
+                                      </div>
+                                    </div>
                                   </div>
-                                </div>
-                                <div>
-                                  <p className="text-[28px] mb-4">eSIMs</p>
-                                  <div className="text-[20px] text-[#666] flex flex-col gap-4">
-                                    <p>eSIMs for IoT and Consumer</p>
-                                    <p>eSIM Interoperability</p>
-                                  </div>
-                                </div>
-                                <div>
-                                  <p className="text-[28px] mb-4">
-                                    eSIM Solutions
-                                  </p>
-                                  <div className="text-[20px] text-[#666] flex flex-col gap-4">
-                                    <p>Remote SIM Provisioning</p>
-                                    <p>eSIM Onboarding Journeys</p>
+                                  <div className="flex flex-col gap-8">
+                                    <div>
+                                      <p className="text-[28px] mb-4">5G</p>
+                                      <div className="text-[20px] text-[#666] flex flex-col gap-4">
+                                        <p>OTA Suite</p>
+                                        <p>Private Networks</p>
+                                      </div>
+                                    </div>
+                                    <div>
+                                      <p className="text-[28px] mb-4">
+                                        Integrated SE
+                                      </p>
+                                      <div className="text-[20px] text-[#666] flex flex-col gap-4">
+                                        <p>iSE</p>
+                                        <p>iSIM</p>
+                                      </div>
+                                    </div>
+                                    <div>
+                                      <p className="text-[28px] mb-4">
+                                        IoT Connectivity
+                                      </p>
+                                      <div className="text-[20px] text-[#666] flex flex-col gap-4">
+                                        <p>IoT Connectivity</p>
+                                      </div>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                              <div className="flex flex-col gap-8">
-                                <div>
-                                  <p className="text-[28px] mb-4">5G</p>
-                                  <div className="text-[20px] text-[#666] flex flex-col gap-4">
-                                    <p>OTA Suite</p>
-                                    <p>Private Networks</p>
-                                  </div>
-                                </div>
-                                <div>
-                                  <p className="text-[28px] mb-4">
-                                    Integrated SE
-                                  </p>
-                                  <div className="text-[20px] text-[#666] flex flex-col gap-4">
-                                    <p>iSE</p>
-                                    <p>iSIM</p>
-                                  </div>
-                                </div>
-                                <div>
-                                  <p className="text-[28px] mb-4">
-                                    IoT Connectivity
-                                  </p>
-                                  <div className="text-[20px] text-[#666] flex flex-col gap-4">
-                                    <p>IoT Connectivity</p>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </a>
-                  <a
-                    href="#"
-                    className="hover:text-[#999] text-[36px] font-normal leading-none group-hover:text-[#111] cursor-pointer"
+                            </motion.div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </a>
+                    <motion.a
+                      href="#"
+                      initial={{ opacity: 0, x: 50, y: 20 }}
+                      animate={{ opacity: 1, x: 0, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.5 }}
+                      className="hover:text-[#999] text-[36px] font-normal leading-none group-hover:text-[#111] cursor-pointer"
+                    >
+                      Insights
+                    </motion.a>
+                    <motion.a
+                      href="#"
+                      initial={{ opacity: 0, x: 50, y: 20 }}
+                      animate={{ opacity: 1, x: 0, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.5 }}
+                      className="hover:text-[#999] text-[36px] font-normal leading-none group-hover:text-[#111] cursor-pointer"
+                    >
+                      About
+                    </motion.a>
+                    <motion.a
+                      href="#"
+                      initial={{ opacity: 0, x: 50, y: 20 }}
+                      animate={{ opacity: 1, x: 0, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.5 }}
+                      className="hover:text-[#999] text-[36px] font-normal leading-none group-hover:text-[#111] cursor-pointer"
+                    >
+                      Careers
+                    </motion.a>
+                  </div>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{
+                      opacity: 0,
+                      transition: { duration: 0.5 },
+                    }}
+                    transition={{ duration: 0.5, delay: 1 }}
+                    className="rounded-full flex w-[178px] fixed left-1/2 -translate-x-1/2 bottom-20 h-[43px] cursor-pointer bg-[#fafbfe] text-[#131bff] px-[1.25vw] justify-center items-center  text-[16px] font-semibold"
                   >
-                    Insights
-                  </a>
-                  <a
-                    href="#"
-                    className="hover:text-[#999] text-[36px] font-normal leading-none group-hover:text-[#111] cursor-pointer"
-                  >
-                    About
-                  </a>
-                  <a
-                    href="#"
-                    className="hover:text-[#999] text-[36px] font-normal leading-none group-hover:text-[#111] cursor-pointer"
-                  >
-                    Careers
-                  </a>
-                </div>
-                <div className="rounded-full flex w-[178px] fixed left-1/2 -translate-x-1/2 bottom-20 h-[43px] cursor-pointer bg-[#fafbfe] text-[#131bff] px-[1.25vw] justify-center items-center  text-[16px] font-semibold">
-                  <p>Talk to our experts</p>
-                </div>
-              </div>
-            )}
+                    <p>Talk to our experts</p>
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
         <div
@@ -413,28 +577,78 @@ function Header() {
           </div>
         </div>
         <div className="text-white flex xl:hidden text-[50px] pt-[350px] font-bold flex-col px-[5vw] xl:px-[200px]">
-          <p className="leading-[55px] empowering text-transparent bg-clip-text bg-[linear-gradient(to_right,_#f9453f,_#fa9b26_15%,_#2ee76f_30%,_#18e1f3_45%,_#3f0085_60%,_#18e1f3_75%,_#2ee76f_90%,_#fa9b26_105%,_#f9453f)]">
+          <motion.p
+            initial={{ x: -250, y: 250, opacity: 0, filter: "blur(100px)" }}
+            animate={{ x: 0, y: 0, opacity: 1, filter: "blur(0px)" }}
+            transition={{ duration: 0.6 }}
+            className="leading-[55px] empowering text-transparent bg-clip-text bg-[linear-gradient(to_right,_#f9453f,_#fa9b26_15%,_#2ee76f_30%,_#18e1f3_45%,_#3f0085_60%,_#18e1f3_75%,_#2ee76f_90%,_#fa9b26_105%,_#f9453f)]"
+          >
             Empowering
-          </p>
-          <p className="leading-[50px]">seamless</p>
-          <p className="leading-[50px]">connectivity</p>
-          <div className="rounded-full leading-[50px] h-[54px] mt-6 cursor-pointer bg-white w-max text-[#131bff] px-8 flex items-center text-[20px] font-semibold">
+          </motion.p>
+          <motion.p
+            className="leading-[50px]"
+            initial={{ x: -250, y: 250, opacity: 0, filter: "blur(100px)" }}
+            animate={{ x: 0, y: 0, opacity: 1, filter: "blur(0px)" }}
+            transition={{ duration: 0.8 }}
+          >
+            seamless
+          </motion.p>
+          <motion.p
+            initial={{ x: -250, y: 250, opacity: 0, filter: "blur(100px)" }}
+            animate={{ x: 0, y: 0, opacity: 1, filter: "blur(0px)" }}
+            transition={{ duration: 1.0 }}
+            className="leading-[50px]"
+          >
+            connectivity
+          </motion.p>
+          <motion.div
+            initial={{ x: -250, y: 250, opacity: 0, filter: "blur(100px)" }}
+            animate={{ x: 0, y: 0, opacity: 1, filter: "blur(0px)" }}
+            transition={{ duration: 1.2 }}
+            className="rounded-full leading-[50px] h-[54px] mt-6 cursor-pointer bg-white w-max text-[#131bff] px-8 flex items-center text-[20px] font-semibold"
+          >
             <p>Talk to our experts</p>
-          </div>
+          </motion.div>
         </div>
         <div className="text-white xl:flex hidden text-[100px] pt-[350px] font-bold flex-col px-[120px] xl:px-[150px]">
-          <p className="leading-[120px] empowering text-transparent bg-clip-text bg-[linear-gradient(to_right,_#f9453f,_#fa9b26_15%,_#2ee76f_30%,_#18e1f3_45%,_#3f0085_60%,_#18e1f3_75%,_#2ee76f_90%,_#fa9b26_105%,_#f9453f)]">
+          <motion.p
+            initial={{ x: -250, y: 250, opacity: 0, filter: "blur(100px)" }}
+            animate={{ x: 0, y: 0, opacity: 1, filter: "blur(0px)" }}
+            transition={{ duration: 0.6 }}
+            className="leading-[120px] empowering text-transparent bg-clip-text bg-[linear-gradient(to_right,_#f9453f,_#fa9b26_15%,_#2ee76f_30%,_#18e1f3_45%,_#3f0085_60%,_#18e1f3_75%,_#2ee76f_90%,_#fa9b26_105%,_#f9453f)]"
+          >
             Empowering
-          </p>
+          </motion.p>
           <div className="flex items-center gap-6 h-full">
-            <div className="rounded-full mt-4 cursor-pointer bg-white w-max text-[#131bff] px-[1.25vw] h-[2.5vw] flex items-center text-[20px] font-semibold">
+            <motion.div
+              initial={{ x: -250, scale: 0, opacity: 0 }}
+              animate={{ x: 0, scale: 1, opacity: 1 }}
+              transition={{ duration: 0.3, delay: 1 }}
+              className="rounded-full mt-4 cursor-pointer bg-white w-max text-[#131bff] px-[1.25vw] h-[2.5vw] flex items-center text-[20px] font-semibold"
+            >
               <p>Talk to our experts</p>
-            </div>
-            <div>
+            </motion.div>
+            <motion.div
+              initial={{ x: -250, y: 250, opacity: 0, filter: "blur(100px)" }}
+              animate={{
+                x: [-250, -250, 0],
+                y: [250, 0, 0],
+                opacity: [0, 1, 1],
+                filter: ["blur(100px)", "blur(0px)", "blur(0px)"],
+                transition: { times: [0, 0.8, 1], duration: 1.2 },
+              }}
+            >
               <p className="leading-[120px]">seamless</p>
-            </div>
+            </motion.div>
           </div>
-          <p className="leading-[120px]">connectivity</p>
+          <motion.p
+            initial={{ x: -250, y: 250, opacity: 0, filter: "blur(100px)" }}
+            animate={{ x: 0, y: 0, opacity: 1, filter: "blur(0px)" }}
+            transition={{ duration: 1.0 }}
+            className="leading-[120px]"
+          >
+            connectivity
+          </motion.p>
         </div>
         <p
           id="solutions"
