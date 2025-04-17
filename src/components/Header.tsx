@@ -68,32 +68,41 @@ function Header() {
     gsap.to("#solutions", {
       y: 0,
       filter: "blur(0)",
-      duration: 0.4,
+      duration: 1,
       scrollTrigger: {
         trigger: "#solutions",
         start: "center bottom",
       },
     });
 
+    gsap.fromTo(
+      "#arrow",
+      { scaleX: 0 },
+      {
+        scaleX: "100%",
+        transformOrigin: "left",
+        delay: 1,
+        duration: 0.5,
+        scrollTrigger: {
+          trigger: "#solutions",
+          start: "center bottom",
+        },
+      }
+    );
+
     gsap.to(".empowering", {
       backgroundImage: () => {
-        return `linear-gradient(to right, #f9453f ${-30}%, #fa9b26 ${
-          15 - 30
-        }%, #2ee76f ${30 - 30}%, #18e1f3 ${45 - 30}%, #3f0085 ${
-          60 - 30
-        }%, #18e1f3 ${75 - 30}%, #2ee76f ${90 - 30}%, #fa9b26 ${
-          105 - 30
-        }%, #f9453f`;
+        return `linear-gradient(to right, #f9453f ${-40}%, #fa9b26 ${-20}%, #2ee76f ${0}%, #18e1f3 ${20}%, #3f0085 ${40}%, #18e1f3 ${60}%, #2ee76f ${80}%, #fa9b26 ${100}%, #f9453f`;
       },
       scrollTrigger: {
-        trigger: "#navbar",
-        start: "top top",
-        end: `+=${window.innerHeight}`,
+        trigger: ".empowering",
+        start: "top bottom",
+        end: "bottom top",
         scrub: true,
         toggleActions: "play none reverse",
       },
     });
-  }, {});
+  });
 
   return (
     <div id="head" className="bg-[#0a0d3a] h-full relative">
@@ -493,25 +502,25 @@ function Header() {
               >
                 <span>Solutions</span>
                 <div className="bg-[#fbfafe] h-[70vh] xl:h-[60vh] fixed transition-all duration-1000 top-24 hidden group-hover/solutions:block left-0 w-full z-[60]">
-                  <div className="px-16 xl:px-24 flex items-center justify-between gap-4 font-medium">
+                  <div className="px-16 xl:px-24 flex items-center justify-between gap-4 font-medium relative">
                     <div className="flex gap-16 text-black">
                       <div className="flex flex-col gap-8">
                         <div>
                           <p className="text-[28px]">SIMs</p>
-                          <div className="text-[20px] text-[#01010c] flex flex-col gap-2">
+                          <div className="text-[18px] text-[#01010c]/50 flex flex-col gap-2">
                             <p>SIMs</p>
                           </div>
                         </div>
                         <div>
                           <p className="text-[28px]">eSIMs</p>
-                          <div className="text-[20px] text-[#01010c] flex flex-col gap-2">
+                          <div className="text-[18px] text-[#01010c]/50 flex flex-col gap-2">
                             <p>eSIMs for IoT and Consumer</p>
                             <p>eSIM Interoperability</p>
                           </div>
                         </div>
                         <div>
                           <p className="text-[28px]">eSIM Solutions</p>
-                          <div className="text-[20px] text-[#01010c] flex flex-col gap-2">
+                          <div className="text-[18px] text-[#01010c]/50 flex flex-col gap-2">
                             <p>Remote SIM Provisioning</p>
                             <p>eSIM Onboarding Journeys</p>
                           </div>
@@ -520,21 +529,21 @@ function Header() {
                       <div className="flex flex-col gap-8">
                         <div>
                           <p className="text-[28px]">5G</p>
-                          <div className="text-[20px] text-[#01010c] flex flex-col gap-2">
+                          <div className="text-[18px] text-[#01010c]/50 flex flex-col gap-2">
                             <p>OTA Suite</p>
                             <p>Private Networks</p>
                           </div>
                         </div>
                         <div>
                           <p className="text-[28px]">Integrated SE</p>
-                          <div className="text-[20px] text-[#01010c] flex flex-col gap-2">
+                          <div className="text-[18px] text-[#01010c]/50 flex flex-col gap-2">
                             <p>iSE</p>
                             <p>iSIM</p>
                           </div>
                         </div>
                         <div>
                           <p className="text-[28px]">IoT Connectivity</p>
-                          <div className="text-[20px] text-[#01010c] flex flex-col gap-2">
+                          <div className="text-[18px] text-[#01010c]/50 flex flex-col gap-2">
                             <p>IoT Connectivity</p>
                           </div>
                         </div>
@@ -545,7 +554,7 @@ function Header() {
                       muted
                       loop
                       playsInline
-                      className="h-full xl:h-[400px] w-1/2 xl:w-[700px] mt-6 rounded-full object-cover"
+                      className="h-full xl:max-h-[50vh] w-2/5 mt-2 rounded-full object-cover"
                     >
                       <source src="/videos/video.mp4"></source>
                     </video>
@@ -656,7 +665,7 @@ function Header() {
         >
           <span className="flex items-center gap-2">
             <span className="text-[16px] lg:text-[0.875vw]">SOLUTIONS</span>
-            <span>
+            <span id="arrow">
               <img src="/images/bluearrow.svg" alt="" />
             </span>
           </span>

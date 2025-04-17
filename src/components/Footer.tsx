@@ -1,13 +1,137 @@
 import { FaLinkedinIn } from "react-icons/fa";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 function Footer() {
+  useGSAP(() => {
+    gsap.fromTo(
+      "#innerconnectivity",
+      { x: "-50%" },
+      {
+        scrollTrigger: {
+          trigger: "#footer",
+          start: "top bottom",
+          onUpdate(self) {
+            if (self.direction === -1) {
+              gsap.to("#innerconnectivity", {
+                scrollTrigger: {
+                  trigger: "#footer",
+                  start: "top bottom",
+                },
+                x: "100%",
+                duration: 20000,
+                repeat: 1000,
+              });
+            } else if (self.direction === 1) {
+              gsap.to("#innerconnectivity", {
+                scrollTrigger: {
+                  trigger: "#footer",
+                  start: "top bottom",
+                },
+                x: "-100%",
+                duration: 10000,
+                repeat: 1000,
+              });
+            }
+          },
+        },
+        x: "-100%",
+        duration: 10000,
+        repeat: 1000,
+      }
+    );
+
+    gsap.to("#connectivity", {
+      scrollTrigger: {
+        trigger: "#footer",
+        scrub: true,
+        start: "top bottom",
+        end: () => {
+          return `+=${
+            (document.getElementById("innerconnectivity")
+              ?.clientWidth as number) * 4
+          }`;
+        },
+      },
+      x: "0%",
+      duration: 10000,
+    });
+
+    gsap.fromTo(
+      "#subscribe",
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        scrollTrigger: {
+          trigger: "#subscribe",
+          start: "top bottom",
+        },
+      }
+    );
+
+    gsap.fromTo(
+      "#insightsfooter",
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        scrollTrigger: {
+          trigger: "#insightsfooter",
+          start: "top bottom",
+        },
+      }
+    );
+
+    gsap.fromTo(
+      "#solutionsfooter",
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        scrollTrigger: {
+          trigger: "#solutionsfooter",
+          start: "top bottom",
+        },
+      }
+    );
+
+    gsap.fromTo(
+      "#aboutfooter",
+      { opacity: 0, y: 50 },
+      {
+        opacity: 1,
+        y: 0,
+        scrollTrigger: {
+          trigger: "#aboutfooter",
+          start: "top bottom",
+        },
+      }
+    );
+  });
+
   return (
-    <div className="bg-[#fbfafe] py-[2rem] lg:py-[7.5rem] overflow-hidden flex flex-col gap-16 lg:gap-28">
-      <p className="text-[#131bff] font-medium text-[125px] xl:text-[250px] w-max">
-        Empowering the future of connectivity
-      </p>
+    <div
+      id="footer"
+      className="bg-[#fbfafe] py-[2rem] lg:py-[7.5rem] overflow-hidden flex flex-col gap-16 lg:gap-28"
+    >
+      <div
+        id="connectivity"
+        className="text-[#131bff] font-medium text-[125px] xl:text-[250px] w-max"
+      >
+        <div className="w-max" id="innerconnectivity">
+          <p>
+            {Array.from({ length: 500 }).map((_, i) => (
+              <span key={i}>Empowering the future of connectivity </span>
+            ))}
+          </p>
+        </div>
+      </div>
       <div className="px-[5vw] lg:px-[10vw] flex flex-col lg:flex-row justify-between gap-24 lg:gap-40">
-        <div className="lg:w-[35%]">
+        <div id="subscribe" className="lg:w-[35%]">
           <svg
             width="137"
             height="41"
@@ -61,7 +185,10 @@ function Footer() {
             </button>
           </div>
         </div>
-        <div className="lg:w-[45%] text-[#01010c] flex flex-col lg:flex-row justify-between gap-12">
+        <div
+          id="insightsfooter"
+          className="lg:w-[45%] text-[#01010c] flex flex-col lg:flex-row justify-between gap-12"
+        >
           <div className="text-[14px] flex flex-col gap-4 lg:gap-2">
             <h3 className="text-[18px] mb-2 lg:mb-4 font-medium">Insights</h3>
             <p>Webinars</p>
@@ -70,7 +197,10 @@ function Footer() {
             <p>Whitepapers</p>
             <p>Articles</p>
           </div>
-          <div className="text-[14px] flex flex-col gap-4 lg:gap-2 lg:w-40">
+          <div
+            id="solutionsfooter"
+            className="text-[14px] flex flex-col gap-4 lg:gap-2 lg:w-40"
+          >
             <h3 className="text-[18px] mb-2 lg:mb-4 font-medium">Solutions</h3>
             <p>SIMs</p>
             <p>eSIMs</p>
@@ -83,7 +213,10 @@ function Footer() {
             <p>iSIM</p>
             <p>IoT Connectivity</p>
           </div>
-          <div className="text-[14px] flex flex-col gap-4 lg:gap-2">
+          <div
+            id="aboutfooter"
+            className="text-[14px] flex flex-col gap-4 lg:gap-2"
+          >
             <h3 className="text-[18px] mb-2 lg:mb-4 font-medium">About</h3>
             <p>About</p>
             <p>Careers</p>

@@ -298,7 +298,10 @@ function Categories() {
           </div>
         </div>
       </Carousel>
-      <div id="categories" className="overflow-hidden hidden xl:flex">
+      <div
+        id="categories"
+        className="overflow-hidden hidden xl:flex bg-[#0a0d3a]"
+      >
         <div className="flex w-max h-screen categoriesContainer">
           <div className="w-screen lg:w-[50vw]">
             <div className="bg-[#c189ff] h-[55vh] text-[#01010c] px-20 flex items-center">

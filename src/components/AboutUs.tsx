@@ -10,7 +10,7 @@ function AboutUs() {
       >
         <source src="/videos/video2.mp4"></source>
       </video>
-      <div className="flex flex-col gap-20 lg:gap-40 px-[5vw] bg-[#0a0d3a]/70 relative py-[5rem] lg:py-[10rem]">
+      <div className="flex flex-col gap-20 lg:gap-40 px-[5vw] bg-[linear-gradient(to_bottom,#0a0d3aff,#0a0d3aaa_50%)] relative py-[5rem] lg:py-[10rem]">
         <div className=" text-white flex  justify-center items-center flex-col gap-10">
           <p className="text-[12px] font-semibold">ABOUT US</p>
           <p className="text-[32px] leading-[40px] lg:text-[36px] w-[90%] font-medium lg:w-[70%] text-center lg:leading-[42px]">
