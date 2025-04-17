@@ -114,20 +114,20 @@ function Footer() {
   });
 
   return (
-    <div
+    <footer
       id="footer"
-      className="bg-[#fbfafe] py-[2rem] lg:py-[7.5rem] overflow-hidden flex flex-col gap-16 lg:gap-28"
+      className="bg-[#fbfafe] py-[2rem] lg:py-[7.5rem] overflow-hidden flex flex-col gap-16 lg:gap-28 relative z-30"
     >
       <div
         id="connectivity"
         className="text-[#131bff] font-medium text-[125px] xl:text-[250px] w-max"
       >
         <div className="w-max" id="innerconnectivity">
-          <p>
+          <h2>
             {Array.from({ length: 500 }).map((_, i) => (
               <span key={i}>Empowering the future of connectivity </span>
             ))}
-          </p>
+          </h2>
         </div>
       </div>
       <div className="px-[5vw] lg:px-[10vw] flex flex-col lg:flex-row justify-between gap-24 lg:gap-40">
@@ -168,14 +168,15 @@ function Footer() {
               fill="#10101c"
             ></path>
           </svg>
-          <p className="text-[#10101c] text-[32px] leading-[36px] lg:text-[32px] lg:leading-[36px] font-medium mt-12">
+          <h2 className="text-[#10101c] text-[32px] leading-[36px] lg:text-[32px] lg:leading-[36px] font-medium mt-12">
             Subscribe to our newsletter
-          </p>
+          </h2>
           <div className="border mt-8 border-[#01010c] rounded-[5rem] h-[55px] flex gap-1 items-center px-1">
             <input
               type="text"
               className=" border-none h-[48px] bg-[#fbfafe] text-[14px] placeholder:font-medium rounded-[5rem] pl-[20px] w-[calc(100%-24px)]"
               placeholder="Email"
+              aria-label="Enter Email"
             />
             <button
               type="button"
@@ -234,7 +235,7 @@ function Footer() {
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   );
 }
 

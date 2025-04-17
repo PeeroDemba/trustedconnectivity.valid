@@ -146,14 +146,15 @@ function Insights() {
 
     gsap.to("#trustedmobile", {
       backgroundImage: () => {
-        return `linear-gradient(to right, #f9453f ${-100}%, #fa9b26 ${-50}%, #2ee76f ${0}%, #18e1f3 ${50}%, #3f0085 ${100}%, #18e1f3 ${150}%, #2ee76f ${200}%, #fa9b26 ${250}%, #f9453f`;
+        return `linear-gradient(to right, #f9453f ${-100}%, #fa9b26 ${-50}%, #2ee76f ${0}%, #18e1f3 ${20}%, #3f0085 ${40}%, #18e1f3 ${150}%, #2ee76f ${200}%, #fa9b26 ${250}%, #f9453f`;
       },
       scrollTrigger: {
         trigger: "#trustedmobile",
         start: "top bottom",
-        end: "bottom top",
+        end: () => {
+          return `bottom+=${window.innerHeight}px top`;
+        },
         scrub: true,
-        toggleActions: "play none reverse",
         invalidateOnRefresh: true,
       },
     });
@@ -176,7 +177,7 @@ function Insights() {
         scale: "135",
         transformOrigin: "49.6% 20%",
         backgroundImage: () => {
-          return `linear-gradient(to right, #f9453f ${-60}%, #fa9b26 ${-30}%, #2ee76f ${0}%, #18e1f3 ${30}%, #3f0085 ${60}%, #18e1f3 ${90}%, #2ee76f ${120}%, #fa9b26 ${150}%, #f9453f`;
+          return `linear-gradient(to right, #f9453f ${-800}%, #fa9b26 ${-400}%, #2ee76f ${-200}%, #18e1f3 ${-100}%, #3f0085 ${-50}%, #18e1f3 ${0}%, #2ee76f ${40}%, #fa9b26 ${150}%, #f9453f`;
         },
         scrollTrigger: {
           trigger: "#trustedtext",
@@ -224,9 +225,12 @@ function Insights() {
   });
 
   return (
-    <div className="bg-[#0a0d3a] px-2 overflow-hidden">
+    <section
+      aria-label="insights"
+      className="bg-[#0a0d3a] px-2 overflow-hidden"
+    >
       <div className="h-[40rem] text-white flex justify-center items-center flex-col gap-10">
-        <p className="text-[12px] font-semibold">LATEST INSIGHTS</p>
+        <h2 className="text-[12px] font-semibold">LATEST INSIGHTS</h2>
         <p
           id="latest"
           className="text-[32px] leading-[40px] lg:text-[36px] 2xl:text-[42px] 2xl:w-[50%] 2xl:leading-[48px] w-[90%] font-medium lg:w-[70%] text-center lg:leading-[42px]"
@@ -268,9 +272,9 @@ function Insights() {
             className="py-12 px-4 lg:p-12 h-[70%] lg:h-[60%] bg-white rounded-tl-2xl rounded-bl-none relative z-20 rounded-br-none rounded-tr-2xl"
           >
             <div className="flex flex-col md:flex-row justify-between gap-4">
-              <p className="text-[12px] lg:text-[18px] font-medium text-[#01010c]">
+              <h3 className="text-[12px] lg:text-[18px] font-medium text-[#01010c]">
                 Latest blog posts
-              </p>
+              </h3>
               <p className="text-[62px] lg:text-[105px] xl:text-[140px] lg:font-medium lg:-mt-2 text-[#131bff] leading-none">
                 <AnimatePresence mode="popLayout">
                   <motion.span
@@ -322,6 +326,7 @@ function Insights() {
                     setData(data - 1);
                   }
                 }}
+                aria-label="Left Arrow"
                 className="h-[36px] group hover:border-black/30 transition-all w-[36px] lg:w-[48px] lg:h-[48px] flex justify-center items-center rounded-full border border-black"
               >
                 <svg
@@ -345,6 +350,7 @@ function Insights() {
                     setData(data + 1);
                   }
                 }}
+                aria-label="Right Arrow"
                 className="h-[36px] group hover:border-black/30 transition-all w-[36px] lg:w-[48px] lg:h-[48px] flex justify-center items-center rounded-full border border-black"
               >
                 <svg
@@ -410,9 +416,9 @@ function Insights() {
         <div className="bg-[url('/images/bg-events-7.jpeg')] second lg:h-[50rem]  text-white h-[40rem] rounded-2xl bg-no-repeat bg-cover bg-center">
           <div className="flex flex-col justify-between py-12 px-4 lg:p-12 rounded-2xl h-full w-full bg-black/30">
             <div className="flex flex-col gap-8">
-              <p className="text-[12px] lg:text-[18px] font-medium">
+              <h3 className="text-[12px] lg:text-[18px] font-medium">
                 Next Event
-              </p>
+              </h3>
               <p className="text-[28px] leading-[28px] font-['Courier_Prime',_monospace] lg:text-[64px] w-min lg:leading-[52px]">
                 MWC Barcelona 2025
               </p>
@@ -435,7 +441,7 @@ function Insights() {
         </div>
         <div className="bg-[#131bff] third text-white px-8 lg:px-16 py-12 gap-8 lg:py-20 h-[25rem] lg:h-[40rem] flex flex-col justify-between rounded-2xl">
           <div>
-            <p className="text-[12px] font-semibold">WHITE PAPERS</p>
+            <h3 className="text-[12px] font-semibold">WHITE PAPERS</h3>
           </div>
           <div className="flex flex-col gap-8">
             <p className="text-[32px] leading-[36px] lg:text-[42px] lg:leading-[50px] lg:w-[80%] font-medium">
@@ -451,7 +457,7 @@ function Insights() {
         </div>
         <div className="bg-[#182799] fourth text-white px-8 lg:px-16 py-12 gap-8 lg:py-20 h-[30rem] sm:h-[25rem] lg:h-[40rem] flex flex-col justify-between rounded-2xl">
           <div>
-            <p className="text-[12px] font-semibold">PRS</p>
+            <h3 className="text-[12px] font-semibold">PRS</h3>
           </div>
           <div className="flex flex-col gap-8">
             <p className="text-[32px] leading-[36px] lg:text-[42px] lg:leading-[50px] lg:w-[80%] font-medium">
@@ -483,7 +489,7 @@ function Insights() {
           </p>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

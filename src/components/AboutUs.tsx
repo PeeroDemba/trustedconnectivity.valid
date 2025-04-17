@@ -1,6 +1,6 @@
 function AboutUs() {
   return (
-    <div className="bg-[#0a0d3a] relative">
+    <section aria-label="about" className="bg-[#0a0d3a] relative">
       <video
         autoPlay
         muted
@@ -12,7 +12,7 @@ function AboutUs() {
       </video>
       <div className="flex flex-col gap-20 lg:gap-40 px-[5vw] bg-[linear-gradient(to_bottom,#0a0d3aff,#0a0d3aaa_50%)] relative py-[5rem] lg:py-[10rem]">
         <div className=" text-white flex  justify-center items-center flex-col gap-10">
-          <p className="text-[12px] font-semibold">ABOUT US</p>
+          <h2 className="text-[12px] font-semibold">ABOUT US</h2>
           <p className="text-[32px] leading-[40px] lg:text-[36px] w-[90%] font-medium lg:w-[70%] text-center lg:leading-[42px]">
             We offer trusted connectivity solutions to device makers,
             connectivity providers and IoT players worldwide
@@ -53,7 +53,7 @@ function AboutUs() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

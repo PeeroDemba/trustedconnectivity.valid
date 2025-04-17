@@ -65,7 +65,7 @@ function Categories() {
   });
 
   return (
-    <>
+    <section aria-label="categories">
       <Carousel
         responsive={responsive}
         swipeable={true}
@@ -80,7 +80,7 @@ function Categories() {
           <div className="h-3/5 lg:h-[267px] bg-[#c189ff] text-[#01010c] px-4 py-12 flex items-center">
             <div className="w-full flex flex-col justify-between gap-12">
               <div>
-                <p className="text-[32px] leading-[32px] font-medium">SIMs</p>
+                <h2 className="text-[32px] leading-[32px] font-medium">SIMs</h2>
                 <p className="mt-4 w-fit leading-[20px]">
                   Explore our comprehensive range of SIMs to find the perfect
                   fit for your connectivity needs.
@@ -101,7 +101,7 @@ function Categories() {
           <div className="h-2/5 lg:h-full">
             <img
               src="/images/featured-sim.jpeg"
-              alt=""
+              alt="SIMs"
               className="object-cover w-[110%] h-full object-center"
             />
           </div>
@@ -110,7 +110,9 @@ function Categories() {
           <div className="h-3/5 lg:h-[267px] bg-[#18e1f3] text-[#01010c] px-4 py-12 flex items-center">
             <div className="w-full flex flex-col justify-between gap-12">
               <div>
-                <p className="text-[32px] leading-[32px] font-medium">eSIMs</p>
+                <h2 className="text-[32px] leading-[32px] font-medium">
+                  eSIMs
+                </h2>
                 <p className="mt-4 w-fit leading-[20px]">
                   Our secure, scalable eSIMs deliver on-demand reliability for
                   Consumer, IoT, and M2M applications.
@@ -139,7 +141,7 @@ function Categories() {
           <div className="h-2/5 lg:h-full">
             <img
               src="/images/featured-esim.jpeg"
-              alt=""
+              alt="eSIMs"
               className="object-cover w-[110%] h-full object-center"
             />
           </div>
@@ -148,9 +150,9 @@ function Categories() {
           <div className="h-3/5 lg:h-[267px] bg-[#2ee76f] text-[#01010c] px-4 py-12 flex items-center">
             <div className="w-full flex flex-col justify-between gap-12">
               <div>
-                <p className="text-[32px] leading-[32px] font-medium">
+                <h2 className="text-[32px] leading-[32px] font-medium">
                   eSIM Solutions
-                </p>
+                </h2>
                 <p className="mt-4 w-fit leading-[20px]">
                   Manage eSIM subscriptions and streamline consumer onboarding
                   to drive acquisition and retention.
@@ -179,7 +181,7 @@ function Categories() {
           <div className="h-2/5 lg:h-full">
             <img
               src="/images/featured-esim-solutions.jpeg"
-              alt=""
+              alt="eSIM Solutions"
               className="object-cover w-[110%] h-full object-center"
             />
           </div>
@@ -188,7 +190,7 @@ function Categories() {
           <div className="h-3/5 lg:h-[267px] bg-[#fa9b26] text-[#01010c] px-4 py-12 flex items-center">
             <div className="w-full flex flex-col justify-between gap-12">
               <div>
-                <p className="text-[32px] leading-[32px] font-medium">5G</p>
+                <h2 className="text-[32px] leading-[32px] font-medium">5G</h2>
                 <p className="mt-4 w-fit leading-[20px]">
                   Our solutions enable seamless integration of private and
                   public networks with advanced interoperable technology and
@@ -218,7 +220,7 @@ function Categories() {
           <div className="h-2/5 lg:h-full">
             <img
               src="/images/featured-5g.jpeg"
-              alt=""
+              alt="5G"
               className="object-cover w-[110%] h-full object-center"
             />
           </div>
@@ -227,9 +229,9 @@ function Categories() {
           <div className="h-3/5 lg:h-[267px] bg-[#ff6359] text-[#01010c] px-4 py-12 flex items-center">
             <div className="w-full flex flex-col justify-between gap-12">
               <div>
-                <p className="text-[32px] leading-[32px] font-medium">
+                <h2 className="text-[32px] leading-[32px] font-medium">
                   Integrated SE
-                </p>
+                </h2>
                 <p className="mt-4 w-fit leading-[20px]">
                   Integrated security and seamless connectivity are at the core
                   of our iSE and iSIM solutions, designed for advanced mobile
@@ -259,7 +261,7 @@ function Categories() {
           <div className="h-2/5 lg:h-full">
             <img
               src="/images/featured-integrated-se.jpeg"
-              alt=""
+              alt="Integrated SE"
               className="object-cover w-[110%] h-full object-center"
             />
           </div>
@@ -268,9 +270,9 @@ function Categories() {
           <div className="h-3/5 lg:h-[267px] bg-[#5c9cff] text-[#01010c] px-4 py-12 flex items-center">
             <div className="w-full flex flex-col justify-between gap-12">
               <div>
-                <p className="text-[32px] leading-[32px] font-medium">
+                <h2 className="text-[32px] leading-[32px] font-medium">
                   IoT Connectivity
-                </p>
+                </h2>
                 <p className="mt-4 w-fit leading-[20px]">
                   Seamlessly connect and secure your IoT ecosystem with
                   scalable, interoperable solutions designed to drive innovation
@@ -292,7 +294,7 @@ function Categories() {
           <div className="h-2/5 lg:h-full">
             <img
               src="/images/featured-iot-connectivity.jpeg"
-              alt=""
+              alt="IoT Connectivity"
               className="object-cover w-[110%] h-full object-center"
             />
           </div>
@@ -306,7 +308,7 @@ function Categories() {
           <div className="w-screen lg:w-[50vw]">
             <div className="bg-[#c189ff] h-[55vh] text-[#01010c] px-20 flex items-center">
               <div className="w-[320px]">
-                <p className="text-[50px] leading-[50px] font-medium">SIMs</p>
+                <h2 className="text-[50px] leading-[50px] font-medium">SIMs</h2>
                 <p className="mt-4">
                   Explore our comprehensive range of SIMs to find the perfect
                   fit for your connectivity needs.
@@ -326,7 +328,7 @@ function Categories() {
             <div className="h-[45vh]">
               <img
                 src="/images/featured-sim.jpeg"
-                alt=""
+                alt="SIMs"
                 className="object-cover w-[110%] h-full object-center"
               />
             </div>
@@ -334,7 +336,9 @@ function Categories() {
           <div className="w-screen lg:w-[50vw] mt-24 categoriesItem">
             <div className="h-[65vh] bg-[#18e1f3] text-[#01010c] px-20 flex items-center item">
               <div className="w-[320px]">
-                <p className="text-[50px] leading-[50px] font-medium">eSIMs</p>
+                <h2 className="text-[50px] leading-[50px] font-medium">
+                  eSIMs
+                </h2>
                 <p className="mt-4">
                   Our secure, scalable eSIMs deliver on-demand reliability for
                   Consumer, IoT, and M2M applications.
@@ -362,7 +366,7 @@ function Categories() {
             <div className="h-[45vh]">
               <img
                 src="/images/featured-esim.jpeg"
-                alt=""
+                alt="eSIMs"
                 className="object-cover w-[110%] h-full object-center"
               />
             </div>
@@ -370,9 +374,9 @@ function Categories() {
           <div className="w-screen lg:w-[50vw] mt-24 categoriesItem">
             <div className="h-[65vh] bg-[#2ee76f] text-[#01010c] px-20 flex items-center item">
               <div className="w-[320px]">
-                <p className="text-[50px] leading-[50px] font-medium">
+                <h2 className="text-[50px] leading-[50px] font-medium">
                   eSIM Solutions
-                </p>
+                </h2>
                 <p className="mt-4">
                   Manage eSIM subscriptions and streamline consumer onboarding
                   to drive acquisition and retention.
@@ -400,7 +404,7 @@ function Categories() {
             <div className="h-[45vh]">
               <img
                 src="/images/featured-esim-solutions.jpeg"
-                alt=""
+                alt="eSIM Solutions"
                 className="object-cover w-[110%] h-full object-center"
               />
             </div>
@@ -408,7 +412,7 @@ function Categories() {
           <div className="w-screen lg:w-[50vw] mt-24 categoriesItem">
             <div className="h-[65vh] bg-[#fa9b26] text-[#01010c] px-20 flex items-center item">
               <div className="w-[320px]">
-                <p className="text-[50px] leading-[50px] font-medium">5G</p>
+                <h2 className="text-[50px] leading-[50px] font-medium">5G</h2>
                 <p className="mt-4">
                   Our solutions enable seamless integration of private and
                   public networks with advanced interoperable technology and
@@ -437,7 +441,7 @@ function Categories() {
             <div className="h-[45vh] bg-black">
               <img
                 src="/images/featured-5g.jpeg"
-                alt=""
+                alt="5G"
                 className="object-cover w-[110%] h-full object-center"
               />
             </div>
@@ -445,9 +449,9 @@ function Categories() {
           <div className="w-screen lg:w-[50vw] mt-24 categoriesItem">
             <div className="h-[65vh] bg-[#ff6359] text-[#01010c] px-20 flex items-center item">
               <div className="w-[320px]">
-                <p className="text-[50px] leading-[50px] font-medium">
+                <h2 className="text-[50px] leading-[50px] font-medium">
                   Integrated SE
-                </p>
+                </h2>
                 <p className="mt-4">
                   Integrated security and seamless connectivity are at the core
                   of our iSE and iSIM solutions, designed for advanced mobile
@@ -476,7 +480,7 @@ function Categories() {
             <div className="h-[45vh] bg-[#bbb]">
               <img
                 src="/images/featured-integrated-se.jpeg"
-                alt=""
+                alt="Integrated SE"
                 className="object-cover w-[110%] h-full object-center"
               />
             </div>
@@ -484,9 +488,9 @@ function Categories() {
           <div className="w-screen lg:w-[50vw] mt-24 categoriesItem">
             <div className="h-[65vh] bg-[#5c9cff] text-[#01010c] px-20 flex items-center item">
               <div className="w-[320px]">
-                <p className="text-[50px] leading-[50px] font-medium">
+                <h2 className="text-[50px] leading-[50px] font-medium">
                   IoT Connectivity
-                </p>
+                </h2>
                 <p className="mt-4">
                   Seamlessly connect and secure your IoT ecosystem with
                   scalable, interoperable solutions designed to drive innovation
@@ -507,14 +511,14 @@ function Categories() {
             <div className="h-[45vh] bg-teal-900">
               <img
                 src="/images/featured-iot-connectivity.jpeg"
-                alt=""
+                alt="IoT Connectivity"
                 className="object-cover w-[110%] h-full object-center"
               />
             </div>
           </div>
         </div>
       </div>
-    </>
+    </section>
   );
 }
 

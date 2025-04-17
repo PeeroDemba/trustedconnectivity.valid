@@ -90,21 +90,37 @@ function Header() {
       }
     );
 
-    gsap.to(".empowering", {
+    gsap.to(".empoweringmobile", {
       backgroundImage: () => {
-        return `linear-gradient(to right, #f9453f ${-20}%, #fa9b26 ${-10}%, #2ee76f ${0}%, #18e1f3 ${20}%, #3f0085 ${40}%, #18e1f3 ${60}%, #2ee76f ${80}%, #fa9b26 ${100}%, #f9453f`;
+        return `linear-gradient(to right, #f9453f ${-500}%, #fa9b26 ${-250}%, #2ee76f ${0}%, #18e1f3 ${25}%, #3f0085 ${50}%, #18e1f3 ${75}%, #2ee76f ${100}%, #fa9b26 ${125}%, #f9453f`;
       },
       scrollTrigger: {
-        trigger: ".empowering",
-        start: "top bottom",
+        trigger: "nav",
+        start: "top top",
+        endTrigger: ".empoweringmobile",
         end: "bottom top",
         scrub: true,
+        invalidateOnRefresh: true,
+      },
+    });
+
+    gsap.to(".empoweringdesktop", {
+      backgroundImage: () => {
+        return `linear-gradient(to right, #f9453f ${-100}%, #fa9b26 ${-50}%, #2ee76f ${0}%, #18e1f3 ${20}%, #3f0085 ${40}%, #18e1f3 ${60}%, #2ee76f ${80}%, #fa9b26 ${100}%, #f9453f`;
+      },
+      scrollTrigger: {
+        trigger: "nav",
+        start: "top top",
+        endTrigger: ".empoweringdesktop",
+        end: "bottom top",
+        scrub: true,
+        invalidateOnRefresh: true,
       },
     });
   });
 
   return (
-    <div id="head" className="bg-[#0a0d3a] h-full relative">
+    <header id="head" className="bg-[#0a0d3a] h-full relative">
       <video
         autoPlay
         muted
@@ -118,7 +134,7 @@ function Header() {
         id="header"
         className="relative top-0 left-0 w-full h-full text-white flex flex-col"
       >
-        <div className="w-full xl:hidden">
+        <nav className="w-full xl:hidden">
           <div className="px-[5vw] lg:px-16 xl:px-24 py-6 lg:py-8 flex justify-between items-center  h-max transition-all duration-500 group-hover:bg-[#fbfafe]">
             <svg
               width="137"
@@ -414,8 +430,8 @@ function Header() {
               )}
             </AnimatePresence>
           </div>
-        </div>
-        <div
+        </nav>
+        <nav
           id="navbar"
           className="group w-full fixed top-0 z-[100] hidden xl:flex"
         >
@@ -583,13 +599,13 @@ function Header() {
               <p>Talk to our experts</p>
             </div>
           </div>
-        </div>
-        <div className="text-white flex xl:hidden text-[50px] pt-[350px] font-bold flex-col px-[5vw] xl:px-[200px]">
+        </nav>
+        <h1 className="text-white flex xl:hidden text-[50px] pt-[350px] font-bold flex-col px-[5vw] xl:px-[200px]">
           <motion.p
             initial={{ x: -250, y: 250, opacity: 0, filter: "blur(100px)" }}
             animate={{ x: 0, y: 0, opacity: 1, filter: "blur(0px)" }}
             transition={{ duration: 0.6 }}
-            className="leading-[55px] empowering text-transparent bg-clip-text bg-[linear-gradient(to_right,_#f9453f,_#fa9b26_15%,_#2ee76f_30%,_#18e1f3_45%,_#3f0085_60%,_#18e1f3_75%,_#2ee76f_90%,_#fa9b26_105%,_#f9453f)]"
+            className="leading-[55px] empoweringmobile bg-clip-text text-transparent bg-[linear-gradient(to_right,_#f9453f,_#fa9b26_15%,_#2ee76f_30%,_#18e1f3_45%,_#3f0085_60%,_#18e1f3_75%,_#2ee76f_90%,_#fa9b26_105%,_#f9453f)]"
           >
             Empowering
           </motion.p>
@@ -617,13 +633,13 @@ function Header() {
           >
             <p>Talk to our experts</p>
           </motion.div>
-        </div>
-        <div className="text-white xl:flex hidden text-[100px] pt-[350px] font-bold flex-col px-[120px] xl:px-[150px]">
+        </h1>
+        <h1 className="text-white xl:flex hidden text-[100px] pt-[350px] font-bold flex-col px-[120px] xl:px-[150px]">
           <motion.p
             initial={{ x: -250, y: 250, opacity: 0, filter: "blur(100px)" }}
             animate={{ x: 0, y: 0, opacity: 1, filter: "blur(0px)" }}
             transition={{ duration: 0.6 }}
-            className="leading-[120px] empowering text-transparent bg-clip-text bg-[linear-gradient(to_right,_#f9453f,_#fa9b26_15%,_#2ee76f_30%,_#18e1f3_45%,_#3f0085_60%,_#18e1f3_75%,_#2ee76f_90%,_#fa9b26_105%,_#f9453f)]"
+            className="leading-[120px] empoweringdesktop text-transparent bg-clip-text bg-[linear-gradient(to_right,_#f9453f,_#fa9b26_15%,_#2ee76f_30%,_#18e1f3_45%,_#3f0085_60%,_#18e1f3_75%,_#2ee76f_90%,_#fa9b26_105%,_#f9453f)]"
           >
             Empowering
           </motion.p>
@@ -657,7 +673,7 @@ function Header() {
           >
             connectivity
           </motion.p>
-        </div>
+        </h1>
         <p
           id="solutions"
           className="text-white translate-y-40 blur-xl py-[100px] px-[5vw] lg:px-[150px] xl:px-[200px] font-medium w-full lg:w-[70%] xl:w-[65%] self-end flex gap-y-0 gap-x-2 flex-wrap items-center"
@@ -694,7 +710,7 @@ function Header() {
           </span>
         </p>
       </div>
-    </div>
+    </header>
   );
 }
 
