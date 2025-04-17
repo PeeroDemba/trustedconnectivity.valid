@@ -21,7 +21,7 @@ function App() {
     >
       <p
         ref={mouseRef}
-        className="bg-[#ccc] h-[6px] w-[6px] rounded-full z-[1000] fixed transition-all duration-200"
+        className="bg-[#ccc] hidden lg:block h-[6px] w-[6px] rounded-full z-[1000] fixed transition-all duration-200"
       ></p>
       <Header />
       <Categories />
