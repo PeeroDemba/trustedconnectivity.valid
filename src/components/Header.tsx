@@ -92,14 +92,13 @@ function Header() {
 
     gsap.to(".empowering", {
       backgroundImage: () => {
-        return `linear-gradient(to right, #f9453f ${-40}%, #fa9b26 ${-20}%, #2ee76f ${0}%, #18e1f3 ${20}%, #3f0085 ${40}%, #18e1f3 ${60}%, #2ee76f ${80}%, #fa9b26 ${100}%, #f9453f`;
+        return `linear-gradient(to right, #f9453f ${-20}%, #fa9b26 ${-10}%, #2ee76f ${0}%, #18e1f3 ${20}%, #3f0085 ${40}%, #18e1f3 ${60}%, #2ee76f ${80}%, #fa9b26 ${100}%, #f9453f`;
       },
       scrollTrigger: {
         trigger: ".empowering",
         start: "top bottom",
         end: "bottom top",
         scrub: true,
-        toggleActions: "play none reverse",
       },
     });
   });
@@ -223,7 +222,7 @@ function Header() {
                       transition={{ duration: 0.5, delay: 2 }}
                     >
                       <img
-                        src="/images/apple-touch-icon.png"
+                        src="./images/apple-touch-icon.png"
                         alt=""
                         width={56}
                         height={18}
@@ -258,7 +257,7 @@ function Header() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.5, delay: 1.5 }}
-                        src="/images/arrowright.svg"
+                        src="./images/arrowright.svg"
                       />
                       <AnimatePresence>
                         {toggle2 && (
@@ -291,7 +290,7 @@ function Header() {
                                 initial={{ opacity: 0 }}
                                 animate={{
                                   opacity: 1,
-                                  transition: { duration: 0.3, delay: 0.5 },
+                                  transition: { duration: 0.3, delay: 1 },
                                 }}
                                 exit={{
                                   opacity: 0,
@@ -304,7 +303,7 @@ function Header() {
                                 className="h-[36px] w-[36px] flex mb-16 justify-center items-center rounded-lg bg-white/30 backdrop-blur-lg"
                               >
                                 <img
-                                  src="/images/arrowright.svg"
+                                  src="./images/arrowright.svg"
                                   alt=""
                                   className="rotate-180"
                                 />
@@ -501,7 +500,7 @@ function Header() {
                 className="hover:!text-[#999] group-hover:text-[#111] cursor-pointer group/solutions"
               >
                 <span>Solutions</span>
-                <div className="bg-[#fbfafe] h-[70vh] xl:h-[60vh] fixed transition-all duration-1000 top-24 hidden group-hover/solutions:block left-0 w-full z-[60]">
+                <div className="bg-[#f9fafe] top-[4.5rem] pt-12 h-[30rem] fixed transition-all duration-1000 hidden group-hover/solutions:block left-0 w-full z-[120]">
                   <div className="px-16 xl:px-24 flex items-center justify-between gap-4 font-medium relative">
                     <div className="flex gap-16 text-black">
                       <div className="flex flex-col gap-8">

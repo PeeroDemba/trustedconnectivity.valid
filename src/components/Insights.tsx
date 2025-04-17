@@ -17,21 +17,21 @@ function Insights() {
       read: 8,
       date: "24 February 2024",
       message: "Valid's Take on Multiple Enabled Profiles",
-      images: "/images/mobile-people.jpeg",
+      images: "./images/mobile-people.jpeg",
     },
     {
       index: 1,
       read: 10,
       date: "22 October 2024",
       message: "Is This the End of the Line for SGP.02 (M2M)?",
-      images: "/images/wireless-earbuds.jpeg",
+      images: "./images/wireless-earbuds.jpeg",
     },
     {
       index: 2,
       read: 8,
       date: "24 September 2024",
       message: "Celebrating 50 Years of Smart Cards",
-      images: "/images/template-mobile.jpeg",
+      images: "./images/template-mobile.jpeg",
     },
   ];
 
@@ -146,7 +146,7 @@ function Insights() {
 
     gsap.to("#trustedmobile", {
       backgroundImage: () => {
-        return `linear-gradient(to right, #f9453f ${-60}%, #fa9b26 ${-30}%, #2ee76f ${0}%, #18e1f3 ${30}%, #3f0085 ${60}%, #18e1f3 ${90}%, #2ee76f ${120}%, #fa9b26 ${150}%, #f9453f`;
+        return `linear-gradient(to right, #f9453f ${-100}%, #fa9b26 ${-50}%, #2ee76f ${0}%, #18e1f3 ${50}%, #3f0085 ${100}%, #18e1f3 ${150}%, #2ee76f ${200}%, #fa9b26 ${250}%, #f9453f`;
       },
       scrollTrigger: {
         trigger: "#trustedmobile",
@@ -368,16 +368,42 @@ function Insights() {
             className="h-[40%] lg:h-1/2 w-full absolute left-0 bottom-0 rounded-bl-2xl rounded-br-2xl"
           >
             <AnimatePresence mode="popLayout">
-              <motion.img
-                key={data}
-                exit={{
-                  opacity: 0,
-                  transition: { duration: 0.5 },
-                }}
-                src={blog[data].images}
-                alt={blog[data].message}
-                className="object-cover object-center h-full w-[110%] rounded-bl-2xl rounded-br-2xl"
-              />
+              {data === 0 && (
+                <motion.img
+                  key={0}
+                  exit={{
+                    opacity: 0,
+                    transition: { duration: 0.5 },
+                  }}
+                  src="./images/mobile-people.jpeg"
+                  alt="Valid's Take on Multiple Enabled Profiles"
+                  className="object-cover object-center h-full w-[110%] rounded-bl-2xl rounded-br-2xl"
+                />
+              )}
+              {data === 1 && (
+                <motion.img
+                  key={1}
+                  exit={{
+                    opacity: 0,
+                    transition: { duration: 0.5 },
+                  }}
+                  src="./images/wireless-earbuds.jpeg"
+                  alt="Is This the End of the Line for SGP.02 (M2M)?"
+                  className="object-cover object-center h-full w-[110%] rounded-bl-2xl rounded-br-2xl"
+                />
+              )}
+              {data === 2 && (
+                <motion.img
+                  key={2}
+                  exit={{
+                    opacity: 0,
+                    transition: { duration: 0.5 },
+                  }}
+                  src="./images/template-mobile.jpeg"
+                  alt="Celebrating 50 Years of Smart Cards"
+                  className="object-cover object-center h-full w-[110%] rounded-bl-2xl rounded-br-2xl"
+                />
+              )}
             </AnimatePresence>
           </div>
         </div>
