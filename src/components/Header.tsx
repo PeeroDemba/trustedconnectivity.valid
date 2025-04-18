@@ -92,7 +92,7 @@ function Header() {
 
     gsap.to(".empoweringmobile", {
       backgroundImage: () => {
-        return `linear-gradient(to right, #f9453f ${-500}%, #fa9b26 ${-250}%, #2ee76f ${0}%, #18e1f3 ${25}%, #3f0085 ${50}%, #18e1f3 ${75}%, #2ee76f ${100}%, #fa9b26 ${125}%, #f9453f`;
+        return `linear-gradient(to right, #f9453f ${-600}%, #fa9b26 ${-300}%, #2ee76f ${0}%, #18e1f3 ${25}%, #3f0085 ${50}%, #18e1f3 ${75}%, #2ee76f ${100}%, #fa9b26 ${125}%, #f9453f`;
       },
       scrollTrigger: {
         trigger: "nav",
@@ -106,7 +106,7 @@ function Header() {
 
     gsap.to(".empoweringdesktop", {
       backgroundImage: () => {
-        return `linear-gradient(to right, #f9453f ${-100}%, #fa9b26 ${-50}%, #2ee76f ${0}%, #18e1f3 ${20}%, #3f0085 ${40}%, #18e1f3 ${60}%, #2ee76f ${80}%, #fa9b26 ${100}%, #f9453f`;
+        return `linear-gradient(to right, #f9453f ${-400}%, #fa9b26 ${-200}%, #2ee76f ${0}%, #18e1f3 ${20}%, #3f0085 ${40}%, #18e1f3 ${60}%, #2ee76f ${80}%, #fa9b26 ${100}%, #f9453f`;
       },
       scrollTrigger: {
         trigger: "nav",
@@ -435,7 +435,7 @@ function Header() {
           id="navbar"
           className="group w-full fixed top-0 z-[100] hidden xl:flex"
         >
-          <div className="px-[5vw] w-full lg:px-16 xl:px-24 py-6 lg:py-8 flex justify-between items-center  h-max transition-all duration-500 group-hover:bg-[#fbfafe]">
+          <div className="px-[5vw] relative w-full lg:px-16 xl:px-24 h-[72px] lg:h-[96px] flex justify-between items-center transition-all duration-500 group-hover:bg-[#fbfafe]">
             <svg
               width="137"
               height="41"
@@ -510,13 +510,10 @@ function Header() {
                 fill="#10101c"
               ></path>
             </svg>
-            <div className="gap-20 flex font-semibold text-[16px]">
-              <a
-                href="#"
-                className="hover:!text-[#999] group-hover:text-[#111] cursor-pointer group/solutions"
-              >
-                <span>Solutions</span>
-                <div className="bg-[#f9fafe] top-[4.5rem] pt-12 h-[30rem] fixed transition-all duration-1000 hidden group-hover/solutions:block left-0 w-full z-[120]">
+            <div className="gap-20 flex items-center font-semibold text-[16px]">
+              <div className="hover:!text-[#999] h-[96px] flex items-center group-hover:text-[#111] cursor-pointer group/solutions z-[999]">
+                <span className="h-full py-8">Solutions</span>
+                <div className="bg-[#f9fafe] top-[4.5rem] hover:block group-hover/solutions:block absolute pt-12 h-[30rem] duration-100 transition-all hidden left-0 w-screen z-[1000]">
                   <div className="px-16 xl:px-24 flex items-center justify-between gap-4 font-medium relative">
                     <div className="flex gap-16 text-black">
                       <div className="flex flex-col gap-8">
@@ -575,7 +572,7 @@ function Header() {
                     </video>
                   </div>
                 </div>
-              </a>
+              </div>
               <a
                 href="#"
                 className="hover:text-[#999] group-hover:text-[#111] cursor-pointer"
